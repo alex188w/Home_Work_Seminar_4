@@ -14,7 +14,7 @@ void Zadacha_25()
     {
         power = power * A;
     }
-    Console.WriteLine($"Число {A} в степени {B} равно {power} ");
+    Console.WriteLine($"Число {A} в степени {B} равно {power}");
 }
 
 void Zadacha_27()
@@ -22,8 +22,47 @@ void Zadacha_27()
 {
     Console.WriteLine("Введите натуральное число ");
     int N = Convert.ToInt32(Console.ReadLine());
-    
+    int sum = 0;
+    while (N > 0)
+    {
+        
+        sum = sum + N % 10;
+        N = N / 10;        
+    }
+    Console.WriteLine($"Сумма цифр данного числа составляет {sum}");
+}
+
+void Zadacha_29()
+// Задача 29: Напишите программу, которая задаёт массив из 8 случайных целых чисел и выводит отсортированный
+// по модулю массив
+{
+    int size = 8;
+    int[] massive = new int[size]; 
+    int index = 0;
+    Console.Write("Исходный массив [ ");
+    while (index < size)
+    {
+        massive[index] = new Random().Next(-99, 100); 
+        Console.Write(massive[index] + " ");
+        index++;    
+    }
+    Console.WriteLine("]");
+    Console.Write("Отсортированный массив [ ");
+    for (int i = 0; i < size; i++)
+    {
+        int minPosition = i;
+        for (int j = i + 1; j < size; j++)
+        {
+            if(Math.Abs(massive[j]) < Math.Abs(massive[minPosition])) minPosition = j;
+        }
+        int temporary = massive[i];
+        massive[i] = massive[minPosition];
+        massive[minPosition] = temporary;
+        Console.Write(massive[i] + " ");        
+    }
+    Console.WriteLine("]");
 }
 
 //Zadacha_25();
-Zadacha_27();
+//Zadacha_27();
+Zadacha_29();
